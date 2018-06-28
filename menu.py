@@ -49,6 +49,7 @@ Notebook Menu
 
     def add_note(self):
         memo = input("Enter a memo: ")
+        tags = input("Enter tags: ")
         self.notebook.new_note(memo)
         print("Your note has been added.")
 
