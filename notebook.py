@@ -69,3 +69,11 @@ class Notebook:
         string.'''
         return [note for note in self.notes if
                 note.match(filter)]
+
+    def del_note(self, note_id):
+        '''Deletes note that matches the
+        note id specified'''
+        note = self._find_note(note_id)
+        if str(note.id) == str(note_id):
+            del self.notes[note.id - 1]
+
