@@ -1,3 +1,4 @@
+import pyperclip
 import sys
 from notebook import Notebook, Note
 
@@ -11,21 +12,22 @@ class Menu:
                 "3": self.add_note,
                 "4": self.modify_note,
                 "5": self.delete_note,
+                "6": self.copy_note,
                 "6": self.quit
                 }
 
     def display_menu(self):
         print("""
 Notebook Menu
-
+{} Notes
 1. Show all Notes
 2. Search Notes
 3. Add Note
 4. Modify Note
 5. Delete Note
-
-6. Quit
-""")
+6. Copy Note
+7. Quit
+""".format(len(self.notebook.notes)))
 
     def run(self):
         '''Display the menu and respond to choices.'''
@@ -52,7 +54,8 @@ Notebook Menu
 
     def add_note(self):
         memo = input("Enter a memo: ")
-        self.notebook.new_note(memo)
+        tags = input("Enter tags: ")
+        self.notebook.new_note(memo, tags=tags)
         print("Your note has been added.")
 
     def modify_note(self):
@@ -63,11 +66,15 @@ Notebook Menu
             self.notebook.modify_memo(id, memo)
         if tags:
             self.notebook.modify_tags(id, tags)
-
+    
     def delete_note(self):
         id = input("Enter a note id: ")
         self.notebook.del_note(id)
 
+    def copy_note(self):
+        '''allows for copy and paste to and from clipboard via pyperclip.'''
+        id = input("Enter a note id: ")
+        pyperclip.paste(self.notebook.notes[id-1].memo)
 
     def quit(self):
         print("Thank you for using your notebook today.")
