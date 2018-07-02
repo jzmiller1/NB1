@@ -10,7 +10,8 @@ class Menu:
                 "2": self.search_notes,
                 "3": self.add_note,
                 "4": self.modify_note,
-                "5": self.quit
+                "5": self.delete_note,
+                "6": self.quit
                 }
 
     def display_menu(self):
@@ -21,7 +22,9 @@ Notebook Menu
 2. Search Notes
 3. Add Note
 4. Modify Note
-5. Quit
+5. Delete Note
+
+6. Quit
 """)
 
     def run(self):
@@ -60,6 +63,11 @@ Notebook Menu
             self.notebook.modify_memo(id, memo)
         if tags:
             self.notebook.modify_tags(id, tags)
+
+    def delete_note(self):
+        id = input("Enter a note id: ")
+        self.notebook.del_note(id)
+
 
     def quit(self):
         print("Thank you for using your notebook today.")
