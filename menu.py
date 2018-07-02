@@ -1,3 +1,4 @@
+import pyperclip
 import sys
 from notebook import Notebook, Note
 
@@ -21,7 +22,8 @@ Notebook Menu
 2. Search Notes
 3. Add Note
 4. Modify Note
-5. Quit
+5. Copy Note
+6. Quit
 """.format(len(self.notebook.notes)))
 
     def run(self):
@@ -60,6 +62,11 @@ Notebook Menu
             self.notebook.modify_memo(id, memo)
         if tags:
             self.notebook.modify_tags(id, tags)
+
+    def copy_note(self):
+        '''allows for copy and paste to and from clipboard via pyperclip.'''
+        pyperclip.copy({ })
+        self.copy_note.format(pyperclip.paste(self.note))
 
     def quit(self):
         print("Thank you for using your notebook today.")
