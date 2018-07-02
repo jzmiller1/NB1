@@ -16,13 +16,13 @@ class Menu:
     def display_menu(self):
         print("""
 Notebook Menu
-
+{} Notes
 1. Show all Notes
 2. Search Notes
 3. Add Note
 4. Modify Note
 5. Quit
-""")
+""".format(len(self.notebook.notes)))
 
     def run(self):
         '''Display the menu and respond to choices.'''
